@@ -19,9 +19,3 @@ export class PipesComponent {
     this.string = this.separator.getRawValue()
   }
 }
-//dddddddddd
-
-
-
-//sdfghgfds
-//sdfghgfds
