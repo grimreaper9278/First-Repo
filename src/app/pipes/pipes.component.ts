@@ -19,3 +19,5 @@ export class PipesComponent {
     this.string = this.separator.getRawValue()
   }
 }
+//this is a test
+//tests 2
