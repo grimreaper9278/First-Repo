@@ -16,7 +16,7 @@
             "outputPath": "dist/profile-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
+            "polyfills":[ 
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
@@ -25,9 +25,19 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/regular.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/solid.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.css",
               "src/styles.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
+            ]
           },
           "configurations": {
             "production": {

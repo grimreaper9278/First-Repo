@@ -1,0 +1,15 @@
+<section class="bg-white container-xl form-group">
+    <div class="row">
+        <div class="col-2">
+            <div class="input-group m-1" dir="rtl">
+                <span class="input-group-text">Rial</span>
+                <input [formControl]="separator" dir="ltr" class="form-control" id="separator" value="{{ string | numFormat }}" (keyup)="numSep()"
+                type="text" />
+            </div>
+            <input id="font" type="text" class="form-control m-1" value="{{ number | numFont }}" #font [(ngModel)]="number" (keyup)="log()" />
+        </div>
+        <div class="col-6">
+            <p class="form-control">price: {{string | numFormat}} Rial</p>
+        </div>
+    </div>
+</section>

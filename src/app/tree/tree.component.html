@@ -1,0 +1,37 @@
+<section dir="rtl">
+  <div class="bg-white container-lg">
+    <div class="d-flex">
+      <ng-container *ngFor="let tree of lists; let i = index">
+        <div id="{{ 'box' + i }}">
+          <ul *ngIf="tree.length > 0">
+            <ng-container *ngFor="let branch of tree; let j = index">
+              <li
+                (click)="getNext(i, j, branch.id, branch.title)"
+                id="{{ i + '-' + j }}"
+                #list
+                class="form-control"
+                [class.active]="this.selectedId[i] == branch.id"
+                id="list"
+                style="cursor: pointer"
+              >
+                {{ branch.title }}
+                <i
+                  #list
+                  *ngIf="branch.children.length > 0"
+                  class="fa-sharp fa-solid fa-caret-left"
+                  style="color: #e01b24"
+                ></i>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
+    <div *ngIf="this.lists.length > 1" class="m-2 path-cont">
+      مسیر:
+      <div class="path rounded-pill" *ngFor="let title of this.selectedTitle">
+        {{ title }}
+      </div>
+    </div>
+  </div>
+</section>

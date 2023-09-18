@@ -1,0 +1,151 @@
+
+<a routerLink="list/list">go to list</a>
+
+<div class="col-7 col-lg-5 mx-auto form-container py-2 px-3 rounded-4" dir="ltr">
+    <form [formGroup]="profileForm" class="needs-validation" (submit)="submit()">
+        <div class="row">
+            <div class="mb-2 col">
+                <label for="firstName" class="form-label mb-0">First Name:</label>
+                <input [ngClass]="this.submitted ? 'ng-submitted' : 'non'" type="text" class="form-control" id="firstName" placeholder="First Name"
+                    formControlName="firstName" [ngClass]="invalid ? 'ng-touched' : ''" />
+                <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched || invalid)"
+                    class="alert alert-danger mt-1 p-1">
+                    <div *ngIf="firstName?.errors?.['required']">
+                        First name is required
+                    </div>
+                    <div *ngIf="firstName?.errors?.['minlength']">
+                        minimum 3 characters
+                    </div>
+                    <div *ngIf="firstName?.errors?.['pattern']">
+                        Name can only contain characters
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 col">
+                <label for="lastName" class="form-label mb-0">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                    formControlName="lastName" [ngClass]="invalid ? 'ng-touched' : ''" />
+                <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched || invalid)"
+                    class="alert alert-danger mt-1 p-1">
+                    <div *ngIf="lastName?.errors?.['required']">
+                        last name is required
+                    </div>
+                    <div *ngIf="lastName?.errors?.['minlength']">
+                        minimum 3 characters
+                    </div>
+                    <div *ngIf="lastName?.errors?.['pattern']">
+                        Name can only contain characters
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-2 col">
+                <label for="cellNum" class="form-label mb-0">cellphone:</label>
+                <input type="number" class="form-control" id="cellNum" placeholder="09XXXXXXXXX / 9XXXXXXXXX"
+                    formControlName="cellNum" [ngClass]="invalid ? 'ng-touched' : ''" />
+                <div *ngIf="cellNum?.invalid && (cellNum?.dirty || cellNum?.touched || invalid)"
+                    class="alert alert-danger mt-1 p-1">
+                    <div *ngIf="cellNum?.errors?.['required']">Cellphone is required</div>
+                    <div *ngIf="cellNum?.errors?.['minlength']">minimum 10 digits</div>
+                    <div *ngIf="cellNum?.errors?.['maxlength']">maximum 11 digits</div>
+                    <div *ngIf="cellNum?.errors?.['pattern']">
+                        Enter a valid phone number
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 col">
+                <label for="email" class="form-label mb-0">Email:</label>
+                <input type="text" class="form-control" id="email" placeholder="example@email.com"
+                    formControlName="email" [ngClass]="invalid ? 'ng-touched' : ''" />
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched || invalid)" class="alert alert-danger mt-1 p-1">
+                    <div *ngIf="email?.errors?.['required']">
+                        Email is required
+                    </div>
+                    <div class="invalid-feedback">
+                        Email is required
+                    </div>
+                    <div *ngIf="email?.errors?.['email']">
+                        Enter a valid email address
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-2 p- col">
+                <label for="phone">Telephone:</label>
+                <div formArrayName="phone" id="phone" class="rounded-3">
+                    <div *ngFor="let num of phone.controls; let i = index; let first = first" class="input-group"
+                        dir="rtl">
+                        <input type="text" dir="ltr" id="num-{{ i }}" placeholder="example: 33456688"
+                            class="form-control" [formControlName]="i" [ngClass]="invalid ? 'ng-touched' : ''" />
+                        <button type="button" *ngIf="first" class="input-group-text btn btn-primary"
+                            (click)="addPhone()">
+                            +
+                        </button>
+                        <button type="button" *ngIf="!first" class="input-group-text btn btn-danger"
+                            (click)="phone.removeAt(i)" style="font-size: 15px">
+                            X
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched || invalid)" class="alert alert-danger mt-1 p-1">
+                    <div *ngIf="phone?.errors?.['pattern']">
+                        Enter a valid phone number
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="row mt-3">
+                    <div class="col-3 mt-4">
+                        <label>Gender: </label>
+                    </div>
+                    <div class="col">
+                        <div class="input-group" dir="rtl">
+                            <span class="form-control gender" dir="ltr">Male</span>
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="radio" name="gender" value="male"
+                                    formControlName="gender" [ngClass]="invalid ? 'ng-touched' : ''"/>
+                            </div>
+                        </div>
+                        <div class="input-group" #gendercheck dir="rtl">
+                            <span class="form-control gender" dir="ltr">Female</span>
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="radio" name="gender" value="female"
+                                    formControlName="gender" [ngClass]="invalid ? 'ng-touched' : ''" />
+                            </div>
+                        </div>
+                        <div *ngIf="gender?.invalid && (gender?.touched || invalid)" class="alert alert-danger mt-1 p-1">
+                            <div *ngIf="gender?.errors?.['required']">
+                                Choose a Gender
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label for="address">Address: </label>
+        <textarea class="form-control mb-3" id="address" formControlName="address" rows="3"></textarea>
+
+        <div *ngIf="failed" class="alert alert-warning" role="alert">
+            Failed to connect to the server
+        </div>
+          
+
+        <button type="submit" class="btn" *ngIf="this.editing == false" [disabled]="submitted==true" [ngClass]="loading == true ? 'btn-success' : 'btn-primary'" [ngClass]="invalid == true ? 'btn-danger' : 'btn-primary'">
+            <span *ngIf="loading==true"><i class="fa-solid fa-spinner fa-spin-pulse" style="color: #ffffff;"></i></span>
+            Submit
+        </button>
+        <button (click)="save()" type="button"  class="btn" *ngIf="this.editing == true" [disabled]="submitted==true" [ngClass]="loading == true ? 'btn-success' : 'btn-primary'" [ngClass]="invalid == true ? 'btn-danger' : 'btn-primary'">
+            <span *ngIf="loading==true"><i class="fa-solid fa-spinner fa-spin-pulse" style="color: #ffffff;"></i></span>
+            Save
+        </button>
+    </form>
+</div>
+
+
+<section>
+    <app-profiler></app-profiler>
+</section>

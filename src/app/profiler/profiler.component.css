@@ -1,0 +1,20 @@
+
+.even {
+    background-color:aquamarine;
+    color: white;
+}
+.odd {
+    background-color:azure;
+    color: white;
+}
+
+tr:hover{
+   opacity: 0.9;
+}
+
+.even>*:not(button){
+    background-color: transparent;
+}
+.odd>*:not(button){
+    background-color: transparent;
+}
