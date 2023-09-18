@@ -5,22 +5,11 @@
         <div id="{{ 'box' + i }}">
           <ul *ngIf="tree.length > 0">
             <ng-container *ngFor="let branch of tree; let j = index">
-              <li
-                (click)="getNext(i, j, branch.id, branch.title)"
-                id="{{ i + '-' + j }}"
-                #list
-                class="form-control"
-                [class.active]="this.selectedId[i] == branch.id"
-                id="list"
-                style="cursor: pointer"
-              >
+              <li (click)="getNext(i, j, branch.id, branch.title)" id="{{ i + '-' + j }}" #list class="form-control"
+                [class.active]="this.selectedId[i] == branch.id" id="list" style="cursor: pointer">
                 {{ branch.title }}
-                <i
-                  #list
-                  *ngIf="branch.children.length > 0"
-                  class="fa-sharp fa-solid fa-caret-left"
-                  style="color: #e01b24"
-                ></i>
+                <i #list *ngIf="branch.children.length > 0" class="fa-sharp fa-solid fa-caret-left"
+                  style="color: #e01b24"></i>
               </li>
             </ng-container>
           </ul>
